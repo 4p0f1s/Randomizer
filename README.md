@@ -27,9 +27,11 @@ This script will:
 8. Finally, the installation and configuration will be completed, and the MAC randomization will be automated.
 
 Only with ip:
+
 ![Auto installer](img/execution.png)
 
 With Macchanger:
+
 ![Auto installer](img/execution2.png)
 
 ### Uninstall
