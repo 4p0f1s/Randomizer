@@ -8,6 +8,7 @@ This script allows you to randomize the MAC addresses of your network interfaces
 ### Manual
 
 To quickly execute the script without installing any additional services, you can use the manual script. This will randomize the MAC addresses of your network interfaces immediately.
+
 ´´´sh
 wget -qO- https://raw.githubusercontent.com/4p0f1s/Randomizer/main/manual_randomizer.sh | sudo bash
 ´´´
