@@ -26,7 +26,11 @@ This script will:
 7. It will also set up a cron job to randomize MAC addresses at a specified interval. The script will prompt you for the cron expression to ensure proper formatting.
 8. Finally, the installation and configuration will be completed, and the MAC randomization will be automated.
 
+Only with ip:
 ![Auto installer](img/execution.png)
+
+With Macchanger:
+![Auto installer](img/execution2.png)
 
 ### Uninstall
 
@@ -39,4 +43,4 @@ This will:
 4. Remove the cron job that was scheduled for periodic MAC randomization.
 5. Optionally, uninstall macchanger if it was installed by the auto-installer.
 
-![Auto installer](img/execution2.png)
+
