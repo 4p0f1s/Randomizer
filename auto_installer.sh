@@ -95,8 +95,8 @@ randomize_macs() {
 
 # Función para generar una MAC aleatoria | Function to generate a random MAC
 generate_random_mac() {
-    local mac_suffix=$(printf '%02X:%02X:%02X:%02X:%02X:%02X' $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) ((RANDOM % 256)) $((RANDOM % 256)))
-    echo "$mac_prefix:$mac_suffix"
+    local mac_suffix=$(printf '%02X:%02X:%02X:%02X:%02X:%02X' $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)))
+    echo "$mac_suffix"
 }
 
 # Función para crear un servicio de systemd | Function to create a systemd service
