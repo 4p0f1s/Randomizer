@@ -9,7 +9,7 @@ NC='\033[0m' # Sin color | No Color
 
 # Nombre del archivo de configuración para recordar la elección del usuario | Configuration file name to remember the user's choice
 CONFIG_DIR="/etc/randomizer"
-CONFIG_FILE="$CONFIG_DIR/mac_randomizer.conf"
+CONFIG_FILE="$CONFIG_DIR/randomizer.conf"
 
 # Función para comprobar si se ejecuta como root | Function to check if running as root
 check_root() {
@@ -95,34 +95,20 @@ randomize_macs() {
 
 # Función para generar una MAC aleatoria | Function to generate a random MAC
 generate_random_mac() {
-    local mac_prefix="02:00:00"  # 02 indica una MAC local administrada (unicast) | 02 indicates a locally administered MAC (unicast)
-    local mac_suffix=$(printf '%02X:%02X:%02X' $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)))
+    local mac_suffix=$(printf '%02X:%02X:%02X:%02X:%02X:%02X' $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256)) ((RANDOM % 256)) $((RANDOM % 256)))
     echo "$mac_prefix:$mac_suffix"
 }
 
 # Función para crear un servicio de systemd | Function to create a systemd service
 create_systemd_service() {
-    cat <<EOF > /etc/systemd/system/mac_randomizer.service
-[Unit]
-Description=MAC Address Randomizer
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/mac_randomizer.sh
-RemainAfterExit=true
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
+    wget https://raw.githubusercontent.com/4p0f1s/Randomizer/refs/heads/main/randomizer.service -O /etc/systemd/system/randomizer.service
     # Crear el script que ejecutará el servicio | Create the script that will execute the service
-    cp "$0" /usr/local/bin/mac_randomizer.sh
-    chmod +x /usr/local/bin/mac_randomizer.sh
+    cp "$0" /usr/local/bin/randomizer.sh
+    chmod +x /usr/local/bin/randomizer.sh
 
     # Habilitar y iniciar el servicio | Enable and start the service
-    systemctl enable mac_randomizer.service
-    systemctl start mac_randomizer.service
+    systemctl enable randomizer.service
+    systemctl start randomizer.service
 
     echo -e "${GREEN}MAC randomization service created and enabled.${NC}"
 }
@@ -139,13 +125,13 @@ create_cron_job() {
         fi
     done
 
-    (crontab -l 2>/dev/null; echo "$cron_expression /usr/local/bin/mac_randomizer.sh") | crontab -
+    (crontab -l 2>/dev/null; echo "$cron_expression /usr/local/bin/randomizer.sh") | crontab -
     echo -e "${GREEN}Cron scheduled task created successfully.${NC}"
 }
 
 # Función principal | Main function
 main() {
-    check_roo
+    check_root
     if [ ! -f $CONFIG_FILE ]; then
         check_dependencies
         randomize_macs

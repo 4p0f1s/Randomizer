@@ -7,9 +7,9 @@ NC='\033[0m' # Sin color | No Color
 
 # Nombre del archivo de configuración y otros archivos relacionados | Name of the configuration file and other related files
 CONFIG_DIR="/etc/randomizer"
-CONFIG_FILE="$CONFIG_DIR/mac_randomizer.conf"
-SERVICE_FILE="/etc/systemd/system/mac_randomizer.service"
-SCRIPT_FILE="/usr/local/bin/mac_randomizer.sh"
+CONFIG_FILE="$CONFIG_DIR/randomizer.conf"
+SERVICE_FILE="/etc/systemd/system/randomizer.service"
+SCRIPT_FILE="/usr/local/bin/randomizer.sh"
 
 # Función para comprobar si se ejecuta como root | Function to check if running as root
 check_root() {
@@ -22,8 +22,8 @@ check_root() {
 # Función para eliminar el servicio de systemd | Function to remove the systemd service
 remove_systemd_service() {
     if [[ -f $SERVICE_FILE ]]; then
-        systemctl stop mac_randomizer.service
-        systemctl disable mac_randomizer.service
+        systemctl stop randomizer.service
+        systemctl disable randomizer.service
         rm -f "$SERVICE_FILE"
         systemctl daemon-reload
         echo -e "${GREEN}Systemd service eliminated.${NC}"
