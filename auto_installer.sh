@@ -75,11 +75,22 @@ randomize_macs() {
             ip link set dev "$iface" down
             echo -e "${BLUE}$iface${NC} ${RED}is down.${NC}"
 
-            if [[ "$USE_ONLY_IP" == true ]]; then
+            if [[ "$USE_ONLY_IP" == true ]]; then               
                 # Usar solo ip para cambiar la MAC | Use only ip to change the MAC
-                new_mac=$(generate_random_mac)
-                ip link set dev "$iface" address "$new_mac"
-                echo -e "${YELLOW}MAC of ${BLUE}$iface${NC} changed to ${YELLOW}$new_mac${NC}"
+                local valid_mac=false
+                while [[$valid_mac == false]]; do
+                
+                    new_mac=$(generate_random_mac)
+                    echo -e "${YELLOW}Trying to set MAC ${BLUE}$iface${NC} to ${YELLOW}$new_mac${NC}"
+                    
+                    ip link set dev "$iface" address "$new_mac"
+                    if [[ $? -eq 0 ]]; then
+                        valid_mac=true
+                        echo -e "${YELLOW}MAC of ${BLUE}$iface${NC} changed to ${YELLOW}$new_mac${NC}"
+                    else
+                        echo -e "${RED}Failed to assign MAC ${new_mac} to ${iface}. Generating a new one...${NC}"
+                    fi
+                done
             else
                 # Usar macchanger | Use macchanger
                 macchanger -r "$iface"
@@ -101,7 +112,7 @@ generate_random_mac() {
 
 # Función para crear un servicio de systemd | Function to create a systemd service
 create_systemd_service() {
-    wget https://raw.githubusercontent.com/4p0f1s/Randomizer/refs/heads/main/randomizer.service -O /etc/systemd/system/randomizer.service
+    wget "https://raw.githubusercontent.com/4p0f1s/Randomizer/refs/heads/main/randomizer.service" -O /etc/systemd/system/randomizer.service
     # Crear el script que ejecutará el servicio | Create the script that will execute the service
     cp "$0" /usr/local/bin/randomizer.sh
     chmod +x /usr/local/bin/randomizer.sh
@@ -133,9 +144,10 @@ create_cron_job() {
 main() {
     check_root
     if [ ! -f $CONFIG_FILE ]; then
+        mkdir $CONFIG_DIR
         check_dependencies
         randomize_macs
-        mkdir $CONFIG_DIR
+        sleep 4
         create_systemd_service
         create_cron_job
         echo -e "${GREEN}Installation and configuration completed.${NC}"
