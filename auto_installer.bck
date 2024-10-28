@@ -61,7 +61,7 @@ check_dependencies() {
 
     # Si falta macchanger y iproute2 está instalado | If macchanger is missing and iproute2 is installed
     if [[ " ${missing_dependencies[*]} " == *" macchanger "* ]]; then
-        read -p "Macchanger not found. Do you want to install it or use only iproute2 (Recomended to use iproute2)? (install/ip): " choice
+        read -p "Macchanger not found. Do you want to install it or use only iproute2? (install/ip): " choice
         if [[ $choice == "install" ]]; then
             install_macchanger
         elif [[ $choice == "ip" ]]; then
