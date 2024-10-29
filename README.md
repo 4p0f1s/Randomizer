@@ -13,7 +13,13 @@ To quickly execute the script without installing any additional services, you ca
 wget -qO- https://raw.githubusercontent.com/4p0f1s/Randomizer/main/manual_randomizer.sh | sudo bash
 ```
 
+---
+
 ### Auto-installer
+
+```sh
+wget -q https://raw.githubusercontent.com/4p0f1s/Randomizer/main/auto_randomizer.sh
+```
 
 For a more persistent solution, you can use the auto-installer.
 This script will:
