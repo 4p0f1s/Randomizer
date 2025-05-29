@@ -4,7 +4,7 @@ After = network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/randomizer.sh
+ExecStart=/usr/local/bin/randomizer.sh --randomize
 RemainAfterExit=true
 
 [Install]
