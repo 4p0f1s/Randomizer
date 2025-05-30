@@ -32,6 +32,10 @@ To quickly execute the script without installing any additional services, you ca
 ```sh
 wget -qO- https://raw.githubusercontent.com/4p0f1s/Randomizer/main/insta_randomizer.sh | sudo bash
 ```
+
+![Insta execution](img/insta.png)
+
+
 If you want you can also run it with `--quiet` or `-q` to suppress output (useful for automation):
 ```sh
 wget -qO- https://raw.githubusercontent.com/4p0f1s/Randomizer/main/insta_randomizer.sh | sudo bash -s -- -q
