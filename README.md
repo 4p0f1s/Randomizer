@@ -12,7 +12,7 @@
 ## Table of Contents
 
 - [Introduction](#Introduction)
-- [How to use it](#How to use it!)
+- [How to use it](#How to use it)
   -  [Insta-Randomizer](#Insta-Randomizer)
   -  [Auto-installer](#Auto-installer)
   -  [Uninstall](#Uninstall)
@@ -23,7 +23,7 @@
 Randomizer, which configures and randomizes MAC addresses periodically to enhance privacy and security.
 This script allows you to randomize the MAC addresses of your network interfaces, either manually or through an automated installation process that sets up everything you need, including a systemd service and a cron job.
 
-## How to use it!
+## How to use it
 
 ### Insta-Randomizer
 
