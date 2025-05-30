@@ -99,7 +99,7 @@ randomize_macs() {
                 valid_mac=true
                 [[ $QUIET == false ]] && echo -e "${NC}[${GREEN}*${NC}] ${YELLOW}MAC of ${BLUE}$iface${NC} changed to ${YELLOW}$new_mac${NC}"
             else
-                [[ $QUIET == false ]] && echo -e "${NC}[${RED}!!${NC}] Failed to assign MAC ${new_mac} to ${iface}. Generating a new one...${NC}"
+                [[ $QUIET == false ]] && echo -e "${NC}[${RED}!!${NC}] ${RED}Failed to assign MAC ${new_mac} to ${iface}. Generating a new one...${NC}"
             fi
         done
 
