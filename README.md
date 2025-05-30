@@ -12,7 +12,7 @@
 ## Table of Contents
 
 - [Introduction](#Introduction)
-- [How to use it!](#How to use it!)
+- [How to use it](#How to use it!)
   -  [Insta-Randomizer](#Insta-Randomizer)
   -  [Auto-installer](#Auto-installer)
   -  [Uninstall](#Uninstall)
